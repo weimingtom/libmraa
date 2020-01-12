@@ -18,6 +18,7 @@
 #include "arm/raspberry_pi.h"
 #include "arm/adlink_ipi.h"
 #include "mraa_internal.h"
+#include "arm/rockpis.h"
 
 
 mraa_platform_t
@@ -99,6 +100,8 @@ mraa_arm_platform()
             platform_type = MRAA_RASPBERRY_PI;
         else if (mraa_file_contains("/proc/device-tree/model", "ADLINK ARM, LEC-PX30"))
             platform_type = MRAA_ADLINK_IPI;
+        else if (mraa_file_contains("/proc/device-tree/model", "Radxa ROCK Pi S"))
+            platform_type = MRAA_ROCKPIS;
     }
 
     switch (platform_type) {
@@ -129,6 +132,9 @@ mraa_arm_platform()
         default:
             plat = NULL;
             syslog(LOG_ERR, "Unknown Platform, currently not supported by MRAA");
+     case MRAA_ROCKPIS:
+	    plat = mraa_rockpis();
+        break;
     }
     return platform_type;
 }
