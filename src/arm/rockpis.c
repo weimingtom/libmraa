@@ -83,9 +83,9 @@ mraa_rockpis()
     if (strncmp(b->platform_name, PLATFORM_NAME_ROCK_PI_S, MAX_SIZE) == 0) {
         b->i2c_bus_count = MRAA_ROCKPIS_I2C_COUNT ;
         b->def_i2c_bus = 0;
-        b->i2c_bus[0].bus_id = 0;
-        b->i2c_bus[1].bus_id = 1;
-        b->i2c_bus[2].bus_id = 3;
+        b->i2c_bus[0].bus_id = 1;
+        b->i2c_bus[1].bus_id = 3;
+        b->i2c_bus[2].bus_id = 0;
        
     }
 
@@ -108,7 +108,7 @@ mraa_rockpis()
         return NULL;
     }
 
-    b->pins[22].pwm.parent_id = 1;
+    
     b->pins[11].pwm.parent_id = 2;
     b->pins[13].pwm.parent_id = 3;
 
